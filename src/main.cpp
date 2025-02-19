@@ -29,7 +29,7 @@ struct FunctionUnit {
 FunctionUnit FunctionInstance [maxfunctions];
 
 FluorescentEffect MyTL(4);
-   
+  
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Fill in the data for every function and servo.
@@ -160,6 +160,7 @@ if(!(FuncState & FN_BIT_02) == FunctionInstance[1].previousState ){
    Serial.println((FuncState & FN_BIT_02) ? "1  ": "0  ");
    FunctionInstance[1].previousState = FuncState & FN_BIT_02;
    if(FunctionInstance[1].previousState){
+    myDFPlayer.volume(Dcc.getCV(26));
     myDFPlayer.playLargeFolder(1, 1);
    }
    else{
@@ -173,6 +174,7 @@ if(!(FuncState & FN_BIT_03) == FunctionInstance[2].previousState ){
    Serial.println((FuncState & FN_BIT_03) ? "1  ": "0  ");
    FunctionInstance[2].previousState = FuncState & FN_BIT_03;
    if(FunctionInstance[2].previousState){
+    myDFPlayer.volume(Dcc.getCV(36));
     myDFPlayer.advertise(1);
    }
    //else{
@@ -303,6 +305,14 @@ void setup()
   Serial.print("Dcc address is: ");
   Serial.println(Dcc.getAddr());
  
+// Load CV values
+// Function 1 CV 1x
+// Function 2 CV 2x
+// load volume for 
+
+// Function 3 CV 3x
+
+
   initDF(myDFPlayer, mySoftwareSerial);
 
 
